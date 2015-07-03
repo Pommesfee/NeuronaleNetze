@@ -1,0 +1,2 @@
+# NeuronaleNetze
+Hopfield Netz
