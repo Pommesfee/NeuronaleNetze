@@ -4,8 +4,11 @@ import java.util.Random;
 public class Meth {
 
 	public ArrayList<int[][]> pictures = new ArrayList<int[][]>();
-
-	public int[][] matirx = new int[64][64];
+	public ArrayList<int[]> picvectors = new ArrayList<int[]>();
+	
+	public ArrayList<int[][]> weightMatrices= new ArrayList<int[][]>();
+	
+	public int[][] finalMatrix = new int[64][64];
 
 	Random r = new Random();
 
@@ -16,7 +19,13 @@ public class Meth {
 		for (int k = 0; k < pictureCount; k++) {
 			for (int i = 0; i < pic.length; i++) {
 				for (int j = 0; j < pic.length; j++) {
-					pic[i][j] = r.nextInt(2) - 1;
+					int rnd;
+					rnd = r.nextInt(2);
+					if (rnd == 0) {
+						pic[i][j] = -1;
+					} else {
+						pic[i][j] = rnd;
+					}
 				}
 			}
 			pictures.add(pic);
@@ -41,10 +50,40 @@ public class Meth {
 			for (int j = 0; j < pic.length; j++) {
 				picVektor[j + (pic.length * i)] = pic[i][j];
 			}
+			picvectors.add(picVektor);
 		}
 
 	}
 
-	
-	
+	public void weightMatrix(int[] picVektor) {
+
+		int[][] matrix = new int[picVektor.length][picVektor.length];
+
+		for (int i = 0; i < picVektor.length; i++) {
+			for (int j = 0; j < picVektor.length; j++) {
+
+				if (i == j) {
+					matrix[i][j] = 0;
+				} else {
+					matrix[i][j] = picVektor[i] * picVektor[j];
+				}
+			}
+		}
+	 weightMatrices.add(matrix);
+
+	}
+
+	public void finalMatrix (ArrayList<int[][]> matrices){
+		
+		for (int i = 0; i < matrices.size(); i++) {
+			for (int j = 0; j < finalMatrix.length; j++) {
+				for (int j2 = 0; j2 < finalMatrix.length; j2++) {
+					finalMatrix[j][j2]
+							,
+				}
+			}
+		}
+		
+	}
+
 }
